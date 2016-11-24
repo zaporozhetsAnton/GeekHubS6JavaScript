@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        var firstArr = [2,1,5,0,3,4,7,2,3,1,0],
+            secondArr = [2, 5, 1, 3, 1, 2, 1, 7, 7, 6],
+            thirdArr = [2, 1, 5, 0, 3, 4, 7, 2, 3, 1, 0],
+            fourthArr = [7, 0, 1, 3, 4, 1, 2, 1],
+            fifthArr = [2, 1, 5, 0, 3, 4, 7, 2, 3, 1, 0],
+            sixthArr = [2, 2, 1, 2, 2, 3, 0, 1, 2],
+            seventhArr = [2, 1, 5, 0, 3, 4, 7, 2, 3, 1, 8],
+            eighthArr = [2, 2, 2, 2, 2];
+
+        pitWater(firstArr);
+        pitWater(secondArr);
+        pitWater(thirdArr);
+        pitWater(fourthArr);
+        pitWater(fifthArr);
+        pitWater(sixthArr);
+        pitWater(seventhArr);
+        pitWater(eighthArr);
+
+        function pitWater(arr) {
+            var max = Math.max.apply(null, arr),
+                    woter = 0;
+            addWoter();
+            arr.reverse();
+            addWoter();
+            arr.reverse();
+            function addWoter() {
+                arr.forEach(function (e, i) {
+                    if (arr[i] === max) {
+                        return false;
+                    }
+                    if (arr[i] < max) {
+                        for (var j = i; j < arr.indexOf(max); j++) {
+                            if (arr[j] < arr[i]) {
+                                woter += arr[i] - arr[j];
+                                arr[j] = arr[i];
+                            }
+                        }
+                    }
+                });
+            }
+            console.log(woter);
+        }
+    </script>
+</body>
+</html>
